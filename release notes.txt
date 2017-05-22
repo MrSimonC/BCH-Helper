@@ -1,0 +1,14 @@
+Version
+1.0: 
+Search the phone directory for highlighted text
+Had complied exe with rainbox icon
+
+1.1: 
+Added "Shift F1" in EMIS, and in EMIS Edit user to find users and change their password automatically.
+Changed 
+Changed icon to BCH icon
+
+1.2
+Added version control inside code, rather than filename
+Added list of shortcuts in Instructions menu item 
+Added about menu item
