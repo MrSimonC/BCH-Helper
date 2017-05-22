@@ -4,7 +4,7 @@ This is an AutoHotKey helper program used to speed up processes in the Bristol C
 
 To install for your own use, simply download and run the main executable:
 
-[BCH Helper.exe](BCH%20Helper.exe?raw=true)
+[BCH Helper.exe](https://github.com/MrSimonC/BCH-Helper/blob/master/BCH%20Helper.exe?raw=true)
 
 The program will run in the tray and if you right click on the icon, choose "Instructions" menu,  you will see the list of commands.
 
