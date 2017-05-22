@@ -101,6 +101,7 @@ FindUser(userSearch:="")
 		Msgbox Config screen took too long to load.
 		Return
 	}
+	Sleep 500	;screen needs more time to load
 	WinGetText, allWinText, A		;find "Users" entry in visible window text (WinText will succeed if exists as part of an entry)
 	If !(TextFoundInArray("Users", allWinText))	
 	{
