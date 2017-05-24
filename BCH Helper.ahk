@@ -1,4 +1,4 @@
-﻿global version = 1.21
+﻿global version = 1.23
 global appName := "BCH Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -131,8 +131,10 @@ EditUserResetPassword(password:="")
 		choice := PickOneAtRandom(PasswordChoices)
 		password := choice . randNum
 	}
-	Send {Home}+{End}%password%+{Tab}{Home}+{End}%password%
-	Sleep 50	;required to allow time for EMIS to update
+	Send {Home}+{End}%password%
+	Sleep 150	;required to allow time for EMIS to validate
+	Send +{Tab}{Home}+{End}%password%
+	Sleep 150	;required to allow time for EMIS to validate
 	Control, Check,,User must change password on next sign, Edit user ahk_exe EmisWeb.exe
 	Msgbox % "Password set to:`r`n`r`n" . password
 }
