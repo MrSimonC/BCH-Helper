@@ -134,7 +134,7 @@ EditUserResetPassword(password:="")
 	Send {Home}+{End}%password%
 	Sleep 150	;required to allow time for EMIS to validate
 	Send +{Tab}{Home}+{End}%password%
-	Sleep 150	;required to allow time for EMIS to validate
+	Sleep 150	;required to allow time for EMIS to validate. adding a comment as a test 2
 	Control, Check,,User must change password on next sign, Edit user ahk_exe EmisWeb.exe
 	Msgbox % "Password set to:`r`n`r`n" . password
 }
