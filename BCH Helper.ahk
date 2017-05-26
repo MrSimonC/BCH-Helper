@@ -1,4 +1,4 @@
-﻿global version = 1.23
+﻿global version = 1.25
 global appName := "BCH Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -8,42 +8,25 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;===Customised Settings===
 #SingleInstance force		;stops complaint message when reloading this file
 
-; Menu
 ; Menu, Tray, add, &Menu Name, label_or_shortcut_code
 Menu, Tray, add, &About, about
 Menu, Tray, add, &Instructions, showInstructions
-; Menu, Tray, Default, &Menu Name 	;Double click icon activates menu item
+Menu, Tray, Default, &Instructions 	;Double click icon activates menu item
 Menu, Tray, Add, E&xit, ^+Esc
 Menu, Tray, NoStandard	;Remove the standard complied hotkey menus: "Exit, Suspend Hotkeys, Pause Script"
 
 ; Script Control
 ^+Esc::ExitApp	;kills application dead when pressing Ctrl+Esc. Note: This line will stop any auto-exec code underneath.
 ^Esc::	;Reload the script / kill it if there is a problem
-Reload
-Sleep 1000 ;if successful, Reload will close this instance during the Sleep, so the line below will never be reached.
-ExitApp
+	Reload
+	Sleep 1000 ;if successful, Reload will close this instance during the Sleep, so the line below will never be reached.
+	ExitApp
 Return
 
-;=====================
-
-about:
-Msgbox, 64,,% appName . " by Simon Crouch" . "`n`rversion: " version
-Return
-
-showInstructions:
-instructions = 
-(
-Ctrl T	= Telephone: look up highlighted text in the directory
-Shift F1	= EMIS: Find user
-Shift F1	= EMIS Edit user: Reset user password
-Win+Click	= Presses Ctrl + Printscreen (used for Greenshot)
-)
-MsgBox, 64,, % instructions, 
-Return
-
-#t::	;look up telephone number in staff address book
-name := GetSelection()
-run chrome.exe http://hr.briscomhealth.org.uk/BCHstaff/fcare.asp?SearchTerm="%name%"
+;===Functions===
+PasteValues:	;was my favourite subroutine ;) sac- recommend you put "Sleep, 250" before any GoSub PasteValues if it doesn't work. Think the clipboard can't keep up with lots of SendInput statements
+	StringReplace, OutputMe, Clipboard,`r,,A
+	SendInput % RegexReplace(OutputMe, "^\s+$")	;trim whitespace including enters (sac- was "^\s+|\s+$")
 Return
 
 GetSelection(Trim:=False)	;returns selection
@@ -61,6 +44,50 @@ GetSelection(Trim:=False)	;returns selection
 	Clipboard := oldClipboard
 	Return Selection
 }
+
+PickOneAtRandom(arrayChoice)
+{
+	Random, index, 1, % arrayChoice.MaxIndex()
+	Return % arrayChoice[index]
+}
+
+TextFoundInArray(findMe, array)
+{
+	Loop, Parse, array, `r`n
+	{
+		if (A_LoopField == findMe)
+			return True
+	}
+	return False
+}
+;===Main Code===
+about:
+	Msgbox, 64,,% appName . " by Simon Crouch" . "`n`rversion: " version
+Return
+
+showInstructions:
+instructions = 
+(
+Ctrl+T	= Look up highlighted text in telephone directory
+Ctrl+L	= Type out clipboard (EMIS: Paste)
+Shift+F1	= EMIS: Find user
+Shift+F1	= EMIS Edit user: Reset user password
+Win+Click	= Ctrl + Printscreen (used for Greenshot)
+
+Ctrl+Esc	= Restart
+Ctrl+Shift+Esc = Quit
+)
+	MsgBox, 64,, % instructions, 
+Return
+
+#t::	;look up telephone number in staff address book
+	name := GetSelection()
+	run chrome.exe http://hr.briscomhealth.org.uk/BCHstaff/fcare.asp?SearchTerm="%name%"
+Return
+
+^l::	;Paste Values
+	GoSub, PasteValues
+Return
 
 ;===greenshot/psr alternative===
 ; Take screenshots (to a folder) when you windows+click. Assumes: Greenshot, Settings, Capture, change Milliseconds to wait before capture = 0
@@ -86,7 +113,7 @@ Return
 	Return
 #IfWinActive
 
-===EMIS functions===
+;===EMIS functions===
 FindUser(userSearch:="")
 {
 	IfWinNotActive EMIS Web Health Care System
@@ -137,21 +164,4 @@ EditUserResetPassword(password:="")
 	Sleep 150	;required to allow time for EMIS to validate
 	Control, Check,,User must change password on next sign, Edit user ahk_exe EmisWeb.exe
 	Msgbox % "Password set to:`r`n`r`n" . password
-}
-
-;===Functions===
-PickOneAtRandom(arrayChoice)
-{
-	Random, index, 1, % arrayChoice.MaxIndex()
-	Return % arrayChoice[index]
-}
-
-TextFoundInArray(findMe, array)
-{
-	Loop, Parse, array, `r`n
-	{
-		if (A_LoopField == findMe)
-			return True
-	}
-	return False
 }

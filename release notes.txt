@@ -12,3 +12,7 @@ Changed icon to BCH icon
 Added version control inside code, rather than filename
 Added list of shortcuts in Instructions menu item 
 Added about menu item
+
+1.25
+added Ctrl+L to paste literal keypresses (tab = Tabkeypress)
+Moved code around for cleaner layout
