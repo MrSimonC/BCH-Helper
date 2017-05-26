@@ -77,7 +77,7 @@ Win+Click	= Ctrl + Printscreen (used for Greenshot)
 Ctrl+Esc	= Restart
 Ctrl+Shift+Esc = Quit
 )
-	MsgBox, 64,, % instructions, 
+	MsgBox, 64, Version %version%, % instructions	
 Return
 
 #t::	;look up telephone number in staff address book
