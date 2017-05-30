@@ -68,14 +68,15 @@ Return
 showInstructions:
 instructions = 
 (
-Ctrl+T	= Look up highlighted text in telephone directory
-Ctrl+L	= Type out clipboard (EMIS: Paste)
-Shift+F1	= EMIS: Find user
-Shift+F1	= EMIS Edit user: Reset user password
-Win+Click	= Ctrl + Printscreen (used for Greenshot)
+EMIS:
+Shift+F1		= Find user / Reset password
+Ctrl+L		= Paste clipboard (with tabs)
 
-Ctrl+Esc	= Restart
-Ctrl+Shift+Esc = Quit
+All:
+Ctrl+T		= Look up highlighted text in telephone directory
+Win+Click		= Ctrl + Printscreen (used for Greenshot)
+Ctrl+Esc		= Restart
+Ctrl+Shift+Esc 	= Quit
 )
 	MsgBox, 64, Version %version%, % instructions	
 Return
@@ -128,9 +129,19 @@ FindUser(userSearch:="")
 		Msgbox Config screen took too long to load.
 		Return
 	}
-	Sleep 500	;screen needs more time to load
-	WinGetText, allWinText, A		;find "Users" entry in visible window text (WinText will succeed if exists as part of an entry)
-	If !(TextFoundInArray("Users", allWinText))	
+	start := A_TickCount
+	found := False
+	While, (A_TickCount-start <= 3000)	;wait for 5 seconds for screen to laod
+	{
+		WinGetText, allWinText, A		;find "Users" entry in visible window text (WinText will succeed if exists as part of an entry)
+		If (TextFoundInArray("Users", allWinText))
+		{
+			found := True
+			Break
+		}
+		Sleep 100
+	}
+	If !(found)
 	{
 		Msgbox Click Users for me please, then rerun.
 		Return
