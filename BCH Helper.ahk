@@ -1,4 +1,4 @@
-﻿global version = 1.25
+﻿global version = 1.26
 global appName := "BCH Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
