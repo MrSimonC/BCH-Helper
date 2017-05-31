@@ -1,5 +1,5 @@
-﻿global version = 1.26
-global appName := "BCH Helper"
+﻿global version = 1.30
+global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -78,7 +78,7 @@ Win+Click		= Ctrl + Printscreen (used for Greenshot)
 Ctrl+Esc		= Restart
 Ctrl+Shift+Esc 	= Quit
 )
-	MsgBox, 64, Version %version%, % instructions	
+	MsgBox, 64, % appName . " - Version " . version, % instructions	
 Return
 
 #t::	;look up telephone number in staff address book

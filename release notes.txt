@@ -16,3 +16,9 @@ Added about menu item
 1.25
 added Ctrl+L to paste literal keypresses (tab = Tabkeypress)
 Moved code around for cleaner layout
+
+1.26
+Cleaned up waiting for the edit user screen to appear - removed Sleep and used While
+
+1.30
+Changed name from BCH Helper to Everyday Helper
