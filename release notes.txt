@@ -22,3 +22,12 @@ Cleaned up waiting for the edit user screen to appear - removed Sleep and used W
 
 1.30
 Changed name from BCH Helper to Everyday Helper
+
+2.0
+Huge update. Integrated my own code into the main team program.
+Added functionality to log into all domains from right-click of menu (assumes windows ad username is EMIS login name)
+Added general functions ahk file
+Changed pastvalues to a function
+Moved all code around, used separate files for functions
+Updated menu to log into all domains
+Added template-creation helpers
