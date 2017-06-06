@@ -33,6 +33,6 @@ Ctrl+Shift+V = paste multiple text list values from Clipboard (copied from ord t
 Ctrl+Shift+P = paste in the prompt, then values after
 
 ---Word---
-"goadd" = Add clipboard entries to EMIS Document: Legacy Drop-Forwn Form Field
+"goadd" = Add clipboard entries to EMIS Document: Legacy Drop-down Form Field
 Control+Shift+C = Copies and cleans the word output from EMIS template
 )
