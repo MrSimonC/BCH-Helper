@@ -1,7 +1,7 @@
 instructions =
 (
 ---All---
-Ctrl+T = Look up highlighted text in telephone directory
+Win+T = Look up highlighted text in telephone directory
 Win+Click = Ctrl + Printscreen (used for Greenshot)
 Ctrl+Esc = Restart
 Ctrl+Shift+Esc = Quit
