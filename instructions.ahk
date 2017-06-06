@@ -1,3 +1,5 @@
+instructions =
+(
 ---All---
 Ctrl+T = Look up highlighted text in telephone directory
 Win+Click = Ctrl + Printscreen (used for Greenshot)
@@ -33,3 +35,4 @@ Ctrl+Shift+P = paste in the prompt, then values after
 ---Word---
 "goadd" = Add clipboard entries to EMIS Document: Legacy Drop-Forwn Form Field
 Control+Shift+C = Copies and cleans the word output from EMIS template
+)

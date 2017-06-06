@@ -31,3 +31,6 @@ Changed pastvalues to a function
 Moved all code around, used separate files for functions
 Updated menu to log into all domains
 Added template-creation helpers
+
+2.1
+Incorporated instructions into the code, not a separate text file

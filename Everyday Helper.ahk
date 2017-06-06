@@ -1,9 +1,10 @@
-﻿global version = 2.0
+﻿global version = 2.1
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
 #Include notify.ahk
 #Include general functions.ahk
+#Include instructions.ahk
 #Include emis functions.ahk
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -41,7 +42,6 @@ about:
 Return
 
 showInstructions:
-	FileRead, instructions, instructions.txt
 	MsgBox, 64, % appName . " - Version " . version, % instructions	
 Return
 
