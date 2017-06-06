@@ -7,7 +7,7 @@ To install for your own use, simply download and run the main executable:
 
 The program will run in the tray and if you double click the icon, or right click on the icon choose "Instructions" menu,  you will see the list of commands.
 
-![imgae of menu](images/readme_menu.png)
+![image of menu](images/readme_menu.png)
 
 To restart the program use `Ctrl+Esc` key.
 
