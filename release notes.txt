@@ -34,3 +34,9 @@ Added template-creation helpers
 
 2.1
 Incorporated instructions into the code, not a separate text file
+
+2.2
+Correction to Ctrl+T link = Win+T
+
+2.3
+Created an auto-populating email to the end user instructing of password reset

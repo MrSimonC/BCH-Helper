@@ -35,12 +35,12 @@ FindUser(userSearch:="")
 		Send %userSearch%{Enter}
 }
 
-EditUserResetPassword(password:="")
+EditUserResetPassword(password:="", askToEmail:=True)
 {
 	PasswordChoices := ["Password", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-	Msgbox, 4, Reset Password, Do you want to reset this password?
-	IfMsgBox No
-		Return
+	;Msgbox, 4, Reset Password, Do you want to reset this password?
+	;IfMsgBox No
+	;	Return
 	IfWinNotActive Edit user ahk_exe EmisWeb.exe
 		Return
 	ControlClick, **************, Edit user ahk_exe EmisWeb.exe		;jumps to second password field
@@ -56,8 +56,16 @@ EditUserResetPassword(password:="")
 	Sleep 150	;required to allow time for EMIS to validate
 	Send +{Tab}{Home}+{End}%password%
 	Sleep 150	;required to allow time for EMIS to validate
+	Send {Shift Down}{Tab 2}{Shift Up}	;email
+	emailAddress := GetSelection()
 	Control, Check,,User must change password on next sign, Edit user ahk_exe EmisWeb.exe
 	Msgbox % "Password set to:`r`n`r`n" . password
+	If askToEmail
+	{
+		MsgBox, 4, Email end user?, Send email to %emailAddress%?
+		IfMsgBox, Yes
+			SendPasswordResetEmail(emailAddress, password)
+	}
 }
 
 Switcher(switcher_id)
@@ -134,4 +142,11 @@ AddLetter(letterName := "")
 	Send % letterName
 	Send {Enter}{Down}{Enter}
 	WinWaitNotActive Find Document Templates ahk_exe EmisWeb.exe
+}
+
+SendPasswordResetEmail(to, newPassword)
+{
+	FileRead, htmlBody, assets/passwordResetBody.htm
+	StringReplace, htmlBody, htmlBody, $pass, % newPassword
+	Email(False, to, "Your EMIS password has been reset.","", htmlBody,,,,,,,,,,,,"bchclinical.systemsupport@nhs.net")
 }
