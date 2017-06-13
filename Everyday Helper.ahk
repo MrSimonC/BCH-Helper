@@ -1,4 +1,4 @@
-﻿global version = 2.3
+﻿global version = 2.4
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -307,7 +307,7 @@ Return
 		}
 	Return
 	
-	#+p::	;save template as word print out to h:\autot_delete
+	#+p::	;save template as word print. Assumes save dialogue has correct save location.
 		Send {AppsKey}p
 		Sleep 200
 		templateName := GetSelection()
@@ -318,7 +318,7 @@ Return
 		Sleep 500		;give time to load page
 		Send {Tab 2}{Space}
 		WinWaitActive Save As
-		Send % "H:\auto_delete\" . templateName
+		Send % templateName
 		Send {Enter}
 		WinWaitActive EMIS Web Health Care System ahk_exe EmisWeb.exe
 		Send {Down}

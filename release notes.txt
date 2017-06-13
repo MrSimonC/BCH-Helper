@@ -40,3 +40,6 @@ Correction to Ctrl+T link = Win+T
 
 2.3
 Created an auto-populating email to the end user instructing of password reset
+
+2.4
+Updated Word output location to not be my own!
