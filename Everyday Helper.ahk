@@ -1,4 +1,4 @@
-﻿global version = 2.4
+﻿global version = 2.5
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file

@@ -43,3 +43,6 @@ Created an auto-populating email to the end user instructing of password reset
 
 2.4
 Updated Word output location to not be my own!
+
+2.5
+Updated Instructions order for cleaner presentation
