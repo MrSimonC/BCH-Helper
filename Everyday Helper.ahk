@@ -279,8 +279,9 @@ Return
 		Send P
 		WinWaitActive, Section Properties
 		Send ^c{Tab 3}{Space}{Tab}{Down}{Tab}^v
-		Sleep 500		;time for human to check the screen
-		Send {Enter}
+		;Below commented as usually the secion needs changing too after the above action
+		;Sleep 500		;time for human to check the screen
+		;Send {Enter}
 	Return
 	
 	^+e::		;extract xml files to a location. Non destructive. Assumes save dialogue has correct save location.
