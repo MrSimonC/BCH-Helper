@@ -46,3 +46,6 @@ Updated Word output location to not be my own!
 
 2.5
 Updated Instructions order for cleaner presentation
+
+2.6
+Changed any windows+ commands to Ctrl+ for consistency

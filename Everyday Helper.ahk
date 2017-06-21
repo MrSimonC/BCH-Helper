@@ -1,4 +1,4 @@
-﻿global version = 2.5
+﻿global version = 2.6
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -254,7 +254,7 @@ Return
 #IfWinActive
 
 #IfWinActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;General EMIS
-	#+s::	;Update component "section". Assumes: correct section key sequence is in clipboard (e.g. "h"="History" section)
+	^+s::	;Update component "section". Assumes: correct section key sequence is in clipboard (e.g. "h"="History" section)
 		MouseGetPos, currentX, currentY
 		If(StrLen(Clipboard)) > 2
 		{
@@ -274,7 +274,7 @@ Return
 		MouseMove, %currentX%, %currentY%, 0
 	Return
 	
-	#+c::	;change section to "Create components as children", with Free Text Entry = Title
+	^+c::	;change section to "Create components as children", with Free Text Entry = Title
 		Click right
 		Send P
 		WinWaitActive, Section Properties
@@ -283,7 +283,7 @@ Return
 		Send {Enter}
 	Return
 	
-	#+e::		;extract xml files to a location. Non destructive. Assumes save dialogue has correct save location.
+	^+e::		;extract xml files to a location. Non destructive. Assumes save dialogue has correct save location.
 		InputBox, loop_number, Loop Number, Number of times to loop:,,300,130
 		If ErrorLevel
 			Return
@@ -307,7 +307,7 @@ Return
 		}
 	Return
 	
-	#+p::	;save template as word print. Assumes save dialogue has correct save location.
+	^+p::	;save template as word print. Assumes save dialogue has correct save location.
 		Send {AppsKey}p
 		Sleep 200
 		templateName := GetSelection()
