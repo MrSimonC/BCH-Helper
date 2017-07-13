@@ -53,5 +53,6 @@ Changed any windows+ commands to Ctrl+ for consistency
 2.62
 Moved just due to network drive issues, removed "use this for concepts code selector" on ^+v
 
-2.7
+2.71
 Created EMIS testing Ctrl+d and Ctrl+Shift+d shortcut
+Added documentation

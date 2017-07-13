@@ -29,6 +29,10 @@ Ctrl+A = Code Pick List: Add all codes from selected to the bottom
 EMIS - Documents:
 "goadd" = Add clipboard entries to Legacy Drop-down Form Field in EMIS Document
 
+EMIS - Testing:
+Ctrl+D = take snapshot (Ctrl+printscreen) & paste to Word
+Ctrl+Shift+D = paste clipboard screenshot to Word
+
 Microsoft Word:
 Control+Shift+C = Copies and cleans the word output from EMIS template
 )
