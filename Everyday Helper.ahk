@@ -1,4 +1,4 @@
-﻿global version = 2.6
+﻿global version = 2.62
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -173,8 +173,8 @@ Return
 					If(code)
 					{
 						Send % code
-						;Send {Tab}{Enter}{Shift Down}{Tab}{Shift Up}
-						Send {Tab}{Enter}		;use this for concepts code selector
+						Send {Tab}{Enter}{Shift Down}{Tab}{Shift Up}
+						;Send {Tab}{Enter}		;use this for concepts code selector
 					}
 					Else
 					{
