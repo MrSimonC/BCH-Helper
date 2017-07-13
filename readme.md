@@ -1,4 +1,4 @@
-# BCH Helper
+# Everyday Helper (for Bristol Community Health)
 
 This is an AutoHotKey helper program used to speed up processes in the Bristol Community Health  Application Support Team, called "Everyday Helper". We use EMIS - many domains, and reset passwords often - so this AutoHotKey program helps with processes such as that.
 
