@@ -1,4 +1,4 @@
-﻿global version = 2.62
+﻿global version = 2.7
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -54,7 +54,7 @@ Return
 	PasteValues()
 Return
 
-;greenshot
+;===greenshot===
 ; Take screenshots (to a folder) when you windows+click. Assumes: Greenshot, Settings, Capture, change Milliseconds to wait before capture = 0
 #~LButton::
 	SendInput ^{PrintScreen}
@@ -64,6 +64,32 @@ Return
 	Sleep 200		;allow time for menus to appear
 	SendInput ^{PrintScreen}
 Return
+
+#IfWinActive, ahk_exe EmisWeb.exe
+	^d::	;EMIS testing: take screenshot and save into Word
+		KeyWait, Control
+		SendMode, Event	;needed for Word to work correctly
+		Clipboard =
+		SendInput ^{PrintScreen}
+		ClipWait, 5, 1
+		If ErrorLevel
+		{
+			Msgbox Waited for screenshot, but timed out.
+			Return
+		}
+		WinActivate, ahk_exe WINWORD.EXE
+		Send {Ctrl Down}v{Ctrl Up}{Down}
+		WinActivate, ahk_exe EmisWeb.exe
+	Return
+
+	^+d::	;EMIS testing: take clipboard screenshot and save into Word
+		SendMode, Event	;needed for Word to work correctly
+		WinActivate, ahk_exe WINWORD.EXE
+		Send {Ctrl Down}v{Ctrl Up}{Down}
+		WinActivate, ahk_exe EmisWeb.exe
+	Return
+
+#IfWinActive
 
 ;===EMIS Config===
 openLive:
