@@ -279,6 +279,7 @@ Return
 	Return
 #IfWinActive
 
+;===EMIS general===
 #IfWinActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;General EMIS
 	^+s::	;Update component "section". Assumes: correct section key sequence is in clipboard (e.g. "h"="History" section)
 		MouseGetPos, currentX, currentY
@@ -350,6 +351,60 @@ Return
 		WinWaitActive EMIS Web Health Care System ahk_exe EmisWeb.exe
 		Send {Down}
 	Return
+
+	::gogetcon::	;save consultation (in full) as a word document (to path: TMP, TEMP, or USERPROFILE). Will stop if no patient already in context. Saves document save path to clipboard
+		savePath := A_Temp . "\"
+		WinActivate ahk_exe EmisWeb.exe
+		Send !ecc		;consultations
+		Sleep 1000
+		WinWaitActive, Patient Find ahk_exe EmisWeb.exe,,1
+		If !ErrorLevel
+			Return
+		Send !cpi	;Print Fully Summary with Attachments
+		WinWaitActive Full Patient Summary ahk_exe EmisWeb.exe
+		Sleep 2000		;left word load
+		Click 250, 250	;click into Word, else F12 won't work
+		Send {F12}	;save as
+		WinWaitActive Save As
+		filename := GetSelection()
+		Send {Home}
+		Send % savePath
+		Send {Enter}
+		Sleep 2000	;allow time to save
+		WinWaitActive ahk_exe WINWORD.EXE
+		Send !{f4}
+		Clipboard := savePath . filename
+	Return
+
+	::gosetcon::	;Attach document to user. Assumes path to document is in clipboard
+		IfNotExist, %Clipboard%
+		{
+			Msgbox Clipboard doesn't contain a valid path to a file.
+			Return
+		}
+		WinActivate ahk_exe EmisWeb.exe
+		Send !ecc		;consultations
+		Sleep 1000
+		WinWaitActive, Patient Find ahk_exe EmisWeb.exe,,1
+		If !ErrorLevel
+			Return
+		Send !cadz		;Attach document
+		WinWaitActive Open ahk_exe EmisWeb.exe
+		Send % Clipboard
+		Send {Enter}
+		WinWaitActive Attach Document ahk_exe EmisWeb.exe
+		Sleep 2000	;let it load
+		Send {Tab 2}{Enter}
+		CodeSelectorAddSingleCode("9l5")		;code: "patient record merged"
+		Send {Tab 7}	;Document title
+	Return
+
+	;template testing
+	#g::	;go fill in template (for testing)
+		Loop, 10
+			Send {Space}{Down}{Enter}{Tab}
+	Return
+
 #IfWinActive
 
 #IfWinActive Term Properties ahk_exe EmisWeb.exe
@@ -386,7 +441,8 @@ Return
 	Return
 #IfWinActive
 
-#IfWinActive ahk_class OpusApp		;Word
+;===Word===
+#IfWinActive ahk_exe WINWORD.EXE
 	^+c::	;copies and cleans the word output from EMIS template "print" to a pastable format (removes square tick boxes)
 		Send ^c
 		Sleep 100
@@ -403,30 +459,6 @@ Return
 	Return
 #IfWinActive
 
-::gogetcon::	;save consultation (in full) as a word document (to path: TMP, TEMP, or USERPROFILE). Will stop if no patient already in context. Saves document save path to clipboard
-	savePath := A_Temp . "\"
-	WinActivate ahk_exe EmisWeb.exe
-	Send !ecc		;consultations
-	Sleep 1000
-	WinWaitActive, Patient Find ahk_exe EmisWeb.exe,,1
-	If !ErrorLevel
-		Return
-	Send !cpi	;Print Fully Summary with Attachments
-	WinWaitActive Full Patient Summary ahk_exe EmisWeb.exe
-	Sleep 2000		;left word load
-	Click 250, 250	;click into Word, else F12 won't work
-	Send {F12}	;save as
-	WinWaitActive Save As
-	filename := GetSelection()
-	Send {Home}
-	Send % savePath
-	Send {Enter}
-	Sleep 2000	;allow time to save
-	WinWaitActive ahk_exe WINWORD.EXE
-	Send !{f4}
-	Clipboard := savePath . filename
-Return
-
 #IfWinActive Drop-Down Form Field Options ahk_exe WINWORD.EXE
 	::goadd::	;Add clipboard entries to EMIS Document: Legacy Drop-Forwn Form Field
 		entries := StrSplit(Clipboard, "`r`n")
@@ -440,25 +472,4 @@ Return
 	Return
 #IfWinActive
 
-::gosetcon::	;Attach document to user. Assumes path to document is in clipboard
-	IfNotExist, %Clipboard%
-	{
-		Msgbox Clipboard doesn't contain a valid path to a file.
-		Return
-	}
-	WinActivate ahk_exe EmisWeb.exe
-	Send !ecc		;consultations
-	Sleep 1000
-	WinWaitActive, Patient Find ahk_exe EmisWeb.exe,,1
-	If !ErrorLevel
-		Return
-	Send !cadz		;Attach document
-	WinWaitActive Open ahk_exe EmisWeb.exe
-	Send % Clipboard
-	Send {Enter}
-	WinWaitActive Attach Document ahk_exe EmisWeb.exe
-	Sleep 2000	;let it load
-	Send {Tab 2}{Enter}
-	CodeSelectorAddSingleCode("9l5")		;code: "patient record merged"
-	Send {Tab 7}	;Document title
-Return
+
