@@ -56,3 +56,6 @@ Moved just due to network drive issues, removed "use this for concepts code sele
 2.71
 Created EMIS testing Ctrl+d and Ctrl+Shift+d shortcut
 Added documentation
+
+2.72
+Added Ctrl+G for filling in templates

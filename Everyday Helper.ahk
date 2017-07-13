@@ -1,4 +1,4 @@
-﻿global version = 2.71
+﻿global version = 2.72
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -400,7 +400,7 @@ Return
 	Return
 
 	;template testing
-	#g::	;go fill in template (for testing)
+	^g::	;go fill in template (for testing)
 		Loop, 10
 			Send {Space}{Down}{Enter}{Tab}
 	Return

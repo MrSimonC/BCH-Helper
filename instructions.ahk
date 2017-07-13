@@ -30,6 +30,7 @@ EMIS - Documents:
 "goadd" = Add clipboard entries to Legacy Drop-down Form Field in EMIS Document
 
 EMIS - Testing:
+Ctrl+G = Auto-fill in templates
 Ctrl+D = take snapshot (Ctrl+printscreen) & paste to Word
 Ctrl+Shift+D = paste clipboard screenshot to Word
 
