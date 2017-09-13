@@ -1,4 +1,4 @@
-﻿global version = 2.72
+﻿global version = 2.73
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -22,6 +22,7 @@ Menu, Tray, add, Open &MATS (14232), openMats
 Menu, Tray, add
 Menu, Tray, add, Open &Train (28159`, 28162), openTrain
 Menu, Tray, add, Open &UAT (28167`, 28171), openUAT
+Menu, Tray, add, Open &GP Test (28167`, 28172), openGPTest
 Menu, Tray, add, 
 Menu, Tray, add, Open Live with &Smartcard (28517), openLiveSmartcard
 Menu, Tray, add, Open &Live (28517), openLive
@@ -156,6 +157,15 @@ openUAT:
 		Return
 	SetTitleMatchMode, 2	;text anywhere inside WinTitle
 	WinWait, 28171 ahk_exe EmisWeb.exe,,30
+Return
+
+openGPTest:
+:B0*:gogptest::
+	Notify("GP Test - opening")
+	Switcher(28167)
+	EmisLogin(28172, A_UserName)
+	SetTitleMatchMode, 2	;text anywhere inside WinTitle
+	WinWait, 28172 ahk_exe EmisWeb.exe,,30
 Return
 
 #IfWinActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;General EMIS
