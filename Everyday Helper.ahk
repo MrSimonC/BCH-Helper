@@ -1,4 +1,4 @@
-﻿global version = 2.73
+﻿global version = 2.74
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -66,7 +66,21 @@ Return
 	SendInput ^{PrintScreen}
 Return
 
+;===EMIS General===
 #IfWinActive, ahk_exe EmisWeb.exe
+	#c::	;EMIS Sessions - Cancel all future sessions
+		Msgbox,1, Cancel all future sessions, Cancel all future sessions:`nHover the mouse over the starting session, then press OK with Enter	;ok cancel(default)
+		IfMsgBox Cancel
+			Return
+		Click Right
+		Send {Down 3}{Enter}
+		WinWaitActive, Confirm Session Cancellation ahk_exe EmisWeb.exe,, 2
+		If ErrorLevel
+			Return
+		ControlClick, Cancel future sessions, Confirm Session Cancellation ahk_exe EmisWeb.exe
+		ControlClick, Yes, Confirm Session Cancellation ahk_exe EmisWeb.exe
+	Return
+
 	^d::	;EMIS testing: take screenshot and save into Word
 		KeyWait, Control
 		SendMode, Event	;needed for Word to work correctly
@@ -481,5 +495,3 @@ Return
 		}
 	Return
 #IfWinActive
-
-

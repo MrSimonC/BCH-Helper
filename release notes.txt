@@ -59,3 +59,6 @@ Added documentation
 
 2.72
 Added Ctrl+G for filling in templates
+
+2.74
+Added Win+C to cancel all future sessions in the Appointments screen
