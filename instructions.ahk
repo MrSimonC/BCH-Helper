@@ -14,6 +14,7 @@ Ctrl+Shift+P = Print Template to Word. Assumes save dialogue is in correct locat
 "gogetcon " = Save consultation (in full) as a word document
 "gosetcon " = Attach document to user. Assumes path to document is in clipboard
 Win+C = Sessions: Cancel all future sessions
+Win+Shift+C = Sessions: Cancel all future sessions loop
 
 EMIS - Templates:
 Ctrl+Shift+V:

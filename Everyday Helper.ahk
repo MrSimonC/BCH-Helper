@@ -1,4 +1,4 @@
-﻿global version = 2.74
+﻿global version = 2.75
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -68,8 +68,45 @@ Return
 
 ;===EMIS General===
 #IfWinActive, ahk_exe EmisWeb.exe
+	^PgUp:: ; <- arrow in appointment book
+		ClickReturn(43, 266)
+	Return
+
+	^PgDn::
+		; -> arrow in appointment book
+		ClickReturn(226,266)
+	Return
+
+	^t::
+		;Click Today in appointment book
+		ClickReturn(130, 430)
+	Return
+
+	#+c::
+		InputBox, loopNo, Amount of weeks to cancel, Cancel all future sessions loop:`nEnter amount of weeks to cancel and hover mouse over Monday session start, then press OK with Spacebar
+		IfMsgBox Cancel
+			Return
+		Loop % loopNo
+		{	
+			; from cancel all sessions
+			Click Right
+			Send {Down 3}{Enter}
+			WinWaitActive, Confirm Session Cancellation ahk_exe EmisWeb.exe,, 2
+			If ErrorLevel
+			{
+				ClickReturn(226,266)
+				Continue
+			}
+			ControlClick, Cancel future sessions, Confirm Session Cancellation ahk_exe EmisWeb.exe
+			ControlClick, Yes, Confirm Session Cancellation ahk_exe EmisWeb.exe
+			; ->
+			ClickReturn(226,266)
+		}
+
+	Return
+
 	#c::	;EMIS Sessions - Cancel all future sessions
-		Msgbox,1, Cancel all future sessions, Cancel all future sessions:`nHover the mouse over the starting session, then press OK with Enter	;ok cancel(default)
+		Msgbox,1, Cancel all future sessions, Cancel all future sessions:`nHover the mouse over the starting session, then press OK with Spacebar	;ok cancel(default)
 		IfMsgBox Cancel
 			Return
 		Click Right

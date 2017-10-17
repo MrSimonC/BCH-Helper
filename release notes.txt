@@ -62,3 +62,6 @@ Added Ctrl+G for filling in templates
 
 2.74
 Added Win+C to cancel all future sessions in the Appointments screen
+
+2.75
+Added Win+Shift+C cancel all future sessions in the Appointments screen loop
