@@ -1,4 +1,4 @@
-﻿global version = 2.75
+﻿global version = 2.76
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -69,17 +69,23 @@ Return
 ;===EMIS General===
 #IfWinActive, ahk_exe EmisWeb.exe
 	^PgUp:: ; <- arrow in appointment book
-		ClickReturn(43, 266)
+		MouseGetPos, currentX, currentY
+		ImageClick("images\EMIS\scheduling_arrow_left.png", 10, 10)
+		MouseMove, %currentX%, %currentY%, 0
 	Return
 
 	^PgDn::
 		; -> arrow in appointment book
-		ClickReturn(226,266)
+		MouseGetPos, currentX, currentY
+		ImageClick("images\EMIS\scheduling_arrow_right.png", 10, 10)
+		MouseMove, %currentX%, %currentY%, 0
 	Return
 
 	^t::
 		;Click Today in appointment book
-		ClickReturn(130, 430)
+		MouseGetPos, currentX, currentY
+		ImageClick("images\EMIS\scheduling_arrow_today.png", 10, 10)
+		MouseMove, %currentX%, %currentY%, 0
 	Return
 
 	#+c::
@@ -91,18 +97,17 @@ Return
 			; from cancel all sessions
 			Click Right
 			Send {Down 3}{Enter}
-			WinWaitActive, Confirm Session Cancellation ahk_exe EmisWeb.exe,, 2
+			WinWaitActive, Confirm Session Cancellation ahk_exe EmisWeb.exe,,2
 			If ErrorLevel
 			{
-				ClickReturn(226,266)
+				Gosub, ^PgDn
 				Continue
 			}
 			ControlClick, Cancel future sessions, Confirm Session Cancellation ahk_exe EmisWeb.exe
 			ControlClick, Yes, Confirm Session Cancellation ahk_exe EmisWeb.exe
-			; ->
-			ClickReturn(226,266)
+			Gosub, ^PgDn
+			Sleep 1000	;time to load screen
 		}
-
 	Return
 
 	#c::	;EMIS Sessions - Cancel all future sessions

@@ -65,3 +65,6 @@ Added Win+C to cancel all future sessions in the Appointments screen
 
 2.75
 Added Win+Shift+C cancel all future sessions in the Appointments screen loop
+
+2.76
+Improved reliability and added instructions for fordward, back in sessions

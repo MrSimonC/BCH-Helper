@@ -13,6 +13,9 @@ Ctrl+Shift+E = Extract Template xml files. Assumes save dialogue is in correct l
 Ctrl+Shift+P = Print Template to Word. Assumes save dialogue is in correct location already
 "gogetcon " = Save consultation (in full) as a word document
 "gosetcon " = Attach document to user. Assumes path to document is in clipboard
+Ctrl+PageDown = Sessions: Next
+Ctrl+PageDown = Sessions: Back
+Ctrl+T = Sessions: Today
 Win+C = Sessions: Cancel all future sessions
 Win+Shift+C = Sessions: Cancel all future sessions loop
 
