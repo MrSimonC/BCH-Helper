@@ -1,4 +1,4 @@
-﻿global version = 2.76
+﻿global version = 2.77
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -225,13 +225,13 @@ openGPTest:
 Return
 
 #IfWinActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;General EMIS
-	+F1::	;jump to find user search screen
+	^+u::	;jump to find user search screen
 		FindUser()
 	Return
 #IfWinActive
 
 #IfWinActive Edit user ahk_exe EmisWeb.exe
-	+F1::	;reset password
+	^+u::	;reset password
 		EditUserResetPassword()
 	Return
 #IfWinActive

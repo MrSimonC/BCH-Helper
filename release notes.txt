@@ -68,3 +68,6 @@ Added Win+Shift+C cancel all future sessions in the Appointments screen loop
 
 2.76
 Improved reliability and added instructions for fordward, back in sessions
+
+2.77
+Moved ShiftF1 to Ctrl+Shift+U due to Shift+F1 being "activate alert" in EMIS if program not running
