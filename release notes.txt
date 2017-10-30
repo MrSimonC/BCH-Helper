@@ -71,3 +71,6 @@ Improved reliability and added instructions for fordward, back in sessions
 
 2.77
 Moved ShiftF1 to Ctrl+Shift+U due to Shift+F1 being "activate alert" in EMIS if program not running
+
+2.78
+Added a welcome greeting. Used to explore tooltip functionality

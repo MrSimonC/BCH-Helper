@@ -1,4 +1,4 @@
-﻿global version = 2.77
+﻿global version = 2.78
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -29,6 +29,16 @@ Menu, Tray, add, Open &Live (28517), openLive
 Menu, Tray, add, 
 Menu, Tray, Add, E&xit, ^+Esc
 Menu, Tray, NoStandard	;Remove the standard complied hotkey menus: "Exit, Suspend Hotkeys, Pause Script"
+
+; Welcome
+currentTime:= a_hour * 100 + a_min
+if ( currentTime < 1200 )
+	greeting = Good Morning
+else if ( currentTime > 1200 or currentTime = 1200 )
+	greeting = Good Afternoon
+StringSplit, Names, A_UserName, .
+StringUpper, Names1, Names1, T
+TrayTip, %greeting% %Names1%, from Everyday Helper!,,1
 
 ; Script Control
 ^+Esc::ExitApp	;kills application dead when pressing Ctrl+Esc. Note: This line will stop any auto-exec code underneath.
