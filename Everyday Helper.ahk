@@ -1,4 +1,4 @@
-﻿global version = 2.78
+﻿global version = 2.79
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -381,10 +381,16 @@ Return
 		Click right
 		Send P
 		WinWaitActive, Section Properties
-		Send ^c{Tab 3}{Space}{Tab}{Down}{Tab}^v
-		;Below commented as usually the secion needs changing too after the above action
-		;Sleep 500		;time for human to check the screen
-		;Send {Enter}
+		;Find title box & click
+		ControlGetPos, titleX, titleY,,,Title, Section Properties
+		titleX += 200
+		titleY += 10
+		Click %titleX%, %titleY%
+		Send {End}+{Home}
+		title := GetSelection()
+		Sleep 200
+		ControlClick, Create components as children, Section Properties
+		Send {Down 2}{Tab}%title%{Tab}{Down}
 	Return
 	
 	^+e::		;extract xml files to a location. Non destructive. Assumes save dialogue has correct save location.

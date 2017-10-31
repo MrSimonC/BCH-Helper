@@ -74,3 +74,6 @@ Moved ShiftF1 to Ctrl+Shift+U due to Shift+F1 being "activate alert" in EMIS if 
 
 2.78
 Added a welcome greeting. Used to explore tooltip functionality
+
+2.79
+Improved reliability of ^+c
