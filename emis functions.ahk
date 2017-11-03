@@ -102,7 +102,7 @@ EmisLogin(org_id, username, pass="")
 
 extractCode(string)	;returns the EMIS/SNOMED code from a string
 {
-	RegExMatch(string, "(\b[0-9]+[a-zA-Z0-9\-]+|[a-zA-Z0-9\-]+[0-9]+\b|\bEMISREQ\|[0-9]+[a-zA-Z0-9\-]+\.*)", code)
+	RegExMatch(string, "(\b[0-9]+[a-zA-Z0-9\-]+|[a-zA-Z0-9\-]+[0-9]+[a-zA-Z0-9\-]*\b|\bEMISREQ\|[0-9]+[a-zA-Z0-9\-]+\.*)", code)
 	Return % code
 }
 
