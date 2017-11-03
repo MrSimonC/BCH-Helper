@@ -77,3 +77,6 @@ Added a welcome greeting. Used to explore tooltip functionality
 
 2.79
 Improved reliability of ^+c
+
+2.80
+Added Remote Assistance

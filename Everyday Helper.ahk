@@ -1,4 +1,4 @@
-﻿global version = 2.79
+﻿global version = 2.80
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -26,6 +26,9 @@ Menu, Tray, add, Open &GP Test (28167`, 28172), openGPTest
 Menu, Tray, add, 
 Menu, Tray, add, Open Live with &Smartcard (28517), openLiveSmartcard
 Menu, Tray, add, Open &Live (28517), openLive
+Menu, Tray, add, Open &Live (28517), openLive
+Menu, Tray, add, 
+Menu, Tray, add, Remote Assistance, openRA
 Menu, Tray, add, 
 Menu, Tray, Add, E&xit, ^+Esc
 Menu, Tray, NoStandard	;Remove the standard complied hotkey menus: "Exit, Suspend Hotkeys, Pause Script"
@@ -245,6 +248,20 @@ Return
 		EditUserResetPassword()
 	Return
 #IfWinActive
+
+;===General=== 
+openRA:
+	IfWinNotExist, Windows Remote Assistance ahk_class NativeHWNDHost
+	{
+		Run msra /offerRA
+		WinWaitActive, Windows Remote Assistance ahk_class NativeHWNDHost,, 3
+		If ErrorLevel
+			Return
+		ControlSetText, Edit1, bch-dt-, Windows Remote Assistance ahk_class NativeHWNDHost
+		ControlSend, Edit1, {End}, Windows Remote Assistance ahk_class NativeHWNDHost
+	}
+	WinActivate
+Return
 
 ;===(EMIS) Templates===
 #IfWinActive ahk_group EMISCodePickOrSelector
