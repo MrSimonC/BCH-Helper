@@ -80,3 +80,6 @@ Improved reliability of ^+c
 
 2.80
 Added Remote Assistance
+
+2.81
+Updated regex to extract emis codes
