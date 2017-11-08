@@ -83,3 +83,6 @@ Added Remote Assistance
 
 2.81
 Updated regex to extract emis codes
+
+2.82
+Ctrl+Shift+E improved to work with documents

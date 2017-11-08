@@ -9,7 +9,7 @@ Ctrl+Shift+Esc = Quit
 EMIS - General:
 Ctrl+Shift+U = Find user / Reset password
 Ctrl+L = Type out clipboard
-Ctrl+Shift+E = Extract Template xml files. Assumes save dialogue is in correct location already
+Ctrl+Shift+E = Extract Template xml/document files. Assumes save dialogue is in correct location already
 Ctrl+Shift+P = Print Template to Word. Assumes save dialogue is in correct location already
 "gogetcon " = Save consultation (in full) as a word document
 "gosetcon " = Attach document to user. Assumes path to document is in clipboard

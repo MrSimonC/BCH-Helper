@@ -1,4 +1,4 @@
-﻿global version = 2.81
+﻿global version = 2.82
 global appName := "Everyday Helper"
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance force		;stops complaint message when reloading this file
@@ -410,12 +410,13 @@ Return
 		Send {Down 2}{Tab}%title%{Tab}{Down}
 	Return
 	
-	^+e::		;extract xml files to a location. Non destructive. Assumes save dialogue has correct save location.
+	^+e::		;extract xml files (and documents) to a location. Non destructive. Assumes save dialogue has correct save location.
 		InputBox, loop_number, Loop Number, Number of times to loop:,,300,130
 		If ErrorLevel
 			Return
 		Loop, %loop_number%
 		{
+			WinActivate, EMIS Web Health Care System ahk_exe EmisWeb.exe
 			Send !lw
 			WinWaitActive Save As
 			Send !s	;save
@@ -429,8 +430,19 @@ Return
 				Send +{Tab}{Down}{Tab 2}{Down}{Up} ;move to next folder
 				Return
 			}
-			WinWaitActive EMIS Web Health Care System ahk_exe EmisWeb.exe
-			Send {Down}
+			WinWaitActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;save dialogue gone
+			Sleep 1000 	;wait for emis reaction to saving document
+			IfWinExist, Retrieving Document. ahk_exe EmisWeb.exe
+			{
+				WinWaitNotActive, Retrieving Document. ahk_exe EmisWeb.exe, WinText, 15
+				If ErrorLevel
+				{
+					TrayTip, Everyday Helper, Retrieving document took over 15 seconds. Ending.
+					Return
+				}
+			}
+			WinWaitActive EMIS Web Health Care System ahk_exe EmisWeb.exe	;wait till EMIS back again
+			Send {Down}w
 		}
 	Return
 	
